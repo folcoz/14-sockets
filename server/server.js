@@ -1,17 +1,23 @@
 const express = require('express');
+const socketIO = require('socket.io');
+const http = require('http');
 
 const path = require('path');
 
+const { initHandlers } = require('./sockets/handler');
+
 const app = express();
+const server = http.createServer(app);
 
 const publicPath = path.resolve(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
 app.use(express.static(publicPath));
 
+let io = socketIO(server);
+initHandlers(io, {});
 
-
-app.listen(port, (err) => {
+server.listen(port, (err) => {
 
     if (err) throw new Error(err);
 

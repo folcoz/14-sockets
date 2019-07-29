@@ -11,6 +11,22 @@
 <body>
     <h1>Programa de Colas</h1>
 
+    <button onclick="saludar()">Saludar</button>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/socket-custom.js"></script>
+
+    <script>
+        
+        function saludar() {
+            requestReply('saludar', {
+                nombre: "Fernando",
+                saludo: "Hola mundo!"
+            }).then(console.log);
+        }
+
+    </script>
+
 </body>
 
 </html>
